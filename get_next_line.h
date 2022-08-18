@@ -6,7 +6,7 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:35:56 by diserran          #+#    #+#             */
-/*   Updated: 2022/08/16 13:12:13 by diserran         ###   ########.fr       */
+/*   Updated: 2022/08/17 08:58:42 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_read_fd(int fd, char *result);
+char	*ft_read_fd(int fd);
 
 #endif

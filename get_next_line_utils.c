@@ -6,7 +6,7 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:35:44 by diserran          #+#    #+#             */
-/*   Updated: 2022/08/16 13:13:27 by diserran         ###   ########.fr       */
+/*   Updated: 2022/08/18 12:59:36 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,27 @@ static char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-
-char	*ft_read_fd(int fd, char *result)
+char	*ft_read_fd(int fd)
 {
 	int		reader;
 	char	*buffer;
+	char	*saved;
 
 	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
+	saved = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer || !saved)
 		return (NULL);
 	reader = read(fd, buffer, BUFFER_SIZE);
-	if (reader == -1)
+	while (reader != 0)
 	{
-		free(buffer);
-		return (NULL);
+		saved = ft_strjoin(saved, buffer);
+		reader = read(fd, buffer, BUFFER_SIZE);
+		if (reader == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
 	}
-	ft_strjoin(result, buffer);
-	return (buffer);
+	printf("%s\n", saved);
+	return (saved);
 }
