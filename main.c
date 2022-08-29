@@ -6,7 +6,7 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:39:17 by diserran          #+#    #+#             */
-/*   Updated: 2022/08/18 12:50:28 by diserran         ###   ########.fr       */
+/*   Updated: 2022/08/29 09:51:01 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 int	main(void)
 {
 	int		fd;
-	char	*str;
+	char	*line;
 
 	fd = open("test_files/42_no_nl", O_RDONLY);
-	//printf("File descriptor: %d\n", fd);
-	//printf("Buffer: %d\n", BUFFER_SIZE);
-	str = get_next_line(fd);
-	//printf("Readed line: %s\n", str);
-	close(fd);
+	line = "";
+	while (line != NULL)
+	{
+		line = get_next_line(fd);
+		printf("%s", line);
+	}
+	fd = close(fd);
 	return (0);
 }

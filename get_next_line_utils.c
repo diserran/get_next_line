@@ -6,7 +6,7 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:35:44 by diserran          #+#    #+#             */
-/*   Updated: 2022/08/18 12:59:36 by diserran         ###   ########.fr       */
+/*   Updated: 2022/08/19 09:11:24 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*ft_read_fd(int fd)
 			return (NULL);
 		}
 	}
-	printf("%s\n", saved);
+	printf("%s\n", buffer);
+	//printf("%s\n", saved);
 	return (saved);
 }
