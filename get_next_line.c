@@ -6,7 +6,7 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:35:29 by diserran          #+#    #+#             */
-/*   Updated: 2022/08/18 12:54:11 by diserran         ###   ########.fr       */
+/*   Updated: 2022/08/31 23:04:44 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*result;
-	char		*line;
+	static char	*line;
 
 	if (fd == -1 || BUFFER_SIZE < 0)
 		return (NULL);
-	result = ft_read_fd(fd);
-	//printf("FINAL %s\n", result);
-	line = result;
+	line = ft_read_fd(fd);
+	//printf("FINAL %s\n", line);
 	return (line);
 }
