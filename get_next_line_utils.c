@@ -6,7 +6,7 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:35:44 by diserran          #+#    #+#             */
-/*   Updated: 2022/09/01 17:27:06 by diserran         ###   ########.fr       */
+/*   Updated: 2022/09/01 22:11:24 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,13 @@ char	*ft_read_fd(int fd)
 			return (NULL);
 		}
 		saved = ft_strjoin(saved, buffer);
+		if (ft_strchr(saved, '\n'))
+			return (ft_handle_line(saved));
 	}
 	return (saved);
 }
 
 char	*ft_handle_line(char *str)
 {
-
-	return (result);
+	return (str);
 }
