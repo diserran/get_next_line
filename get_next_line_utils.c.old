@@ -6,7 +6,7 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:35:44 by diserran          #+#    #+#             */
-/*   Updated: 2022/09/01 17:27:06 by diserran         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:10:42 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,35 +51,15 @@ static char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-static char	*ft_strchr(const char *s, int c)
-{
-	char			*str;
-	unsigned int	i;
-
-	str = (char *) s;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
-		i++;
-	}
-	if (str[i] == (unsigned char)c)
-		return (&str[i]);
-	return (NULL);
-}
-
-char	*ft_read_fd(int fd)
+char	*ft_read_fd(int fd, char *str)
 {
 	int		reader;
 	char	*buffer;
-	char	*saved;
+	int		i;
 
-	buffer = (char *) malloc(sizeof(char) * (BUFFER_SIZE));
-	saved = (char *) malloc(sizeof(char) * (BUFFER_SIZE));
-	if (!buffer || !saved)
-		return (NULL);
+	buffer = (char *) malloc(sizeof(char) * BUFFER_SIZE);
 	reader = 1;
+	i = 0;
 	while (reader != 0)
 	{
 		reader = read(fd, buffer, BUFFER_SIZE);
@@ -88,13 +68,14 @@ char	*ft_read_fd(int fd)
 			free(buffer);
 			return (NULL);
 		}
-		saved = ft_strjoin(saved, buffer);
+		str = ft_strjoin(str, buffer);
+		while (str[i] != '\n')
+			i++;
 	}
-	return (saved);
+	return (str);
 }
 
-char	*ft_handle_line(char *str)
+char	*ft_handle_line(char *str, int byte_num)
 {
 
-	return (result);
 }
