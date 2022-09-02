@@ -6,13 +6,13 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:35:44 by diserran          #+#    #+#             */
-/*   Updated: 2022/09/01 22:11:24 by diserran         ###   ########.fr       */
+/*   Updated: 2022/09/02 11:26:56 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	int	i;
 
@@ -90,12 +90,26 @@ char	*ft_read_fd(int fd)
 		}
 		saved = ft_strjoin(saved, buffer);
 		if (ft_strchr(saved, '\n'))
-			return (ft_handle_line(saved));
+			return (saved);
 	}
 	return (saved);
 }
 
 char	*ft_handle_line(char *str)
 {
-	return (str);
+	char	*line;
+	int		str_len;
+	int		i;
+
+	str_len = ft_strlen(str);
+	i = 0;
+	line = (char *) malloc(sizeof(char) * str_len);
+	while (i < str_len)
+	{
+		line[i] = str[i];
+		if (line[i] == '\n')
+			return (line);
+		i++;
+	}
+	return (line);
 }
