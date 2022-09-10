@@ -6,13 +6,13 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:35:44 by diserran          #+#    #+#             */
-/*   Updated: 2022/09/01 15:10:42 by diserran         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:54:52 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	int	i;
 
@@ -22,60 +22,69 @@ static size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-static char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
-	int		len_s1;
+	int		size;
 	int		i;
+	int		j;
 
 	if (!s1 || !s2)
 		return (NULL);
-	i = 0;
-	len_s1 = ft_strlen(s1);
-	str = malloc(sizeof(*s1) * ((len_s1 + ft_strlen(s2)) + 1));
+	size = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(sizeof(char) * (size + 1));
 	if (!str)
 		return (NULL);
-	while (s1[i])
-	{
+	i = -1;
+	while (s1[++i])
 		str[i] = s1[i];
-		i++;
-	}
-	i = 0;
-	while (s2[i])
-	{
-		str[len_s1] = s2[i];
-		i++;
-		len_s1++;
-	}
-	str[len_s1] = '\0';
+	j = -1;
+	while (s2[++j])
+		str[i++] = s2[j];
+	str[size] = '\0';
 	return (str);
 }
 
-char	*ft_read_fd(int fd, char *str)
+char	*ft_strchr(const char *s, int c)
 {
-	int		reader;
-	char	*buffer;
-	int		i;
+	char			*str;
+	unsigned int	i;
 
-	buffer = (char *) malloc(sizeof(char) * BUFFER_SIZE);
-	reader = 1;
+	str = (char *) s;
 	i = 0;
-	while (reader != 0)
+	while (str[i])
 	{
-		reader = read(fd, buffer, BUFFER_SIZE);
-		if (reader == -1)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		str = ft_strjoin(str, buffer);
-		while (str[i] != '\n')
-			i++;
+		if (str[i] == (unsigned char)c)
+			return (&str[i]);
+		i++;
 	}
-	return (str);
+	if (str[i] == (unsigned char)c)
+		return (&str[i]);
+	return (NULL);
 }
 
-char	*ft_handle_line(char *str, int byte_num)
+void	ft_bzero(void *s, size_t n)
 {
+	size_t			i;
+	unsigned char	*str;
 
+	i = 0;
+	str = (unsigned char *)s;
+	while (i < n)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	s = str;
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*tmp;
+
+	tmp = malloc(size * count);
+	if (!tmp)
+		return (NULL);
+	ft_bzero(tmp, (count * size));
+	return (tmp);
 }
