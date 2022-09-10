@@ -6,7 +6,7 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:35:29 by diserran          #+#    #+#             */
-/*   Updated: 2022/09/10 19:40:05 by diserran         ###   ########.fr       */
+/*   Updated: 2022/09/10 22:46:59 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static char	*ft_join(char *buffer, char *buf)
 
 static char	*ft_read_fd(int fd, char *str)
 {
-	char	*buffer;
-	int		reader;
+	char		*buffer;
+	ssize_t		reader;
 
 	if (!str)
 		str = ft_calloc(1, 1);
