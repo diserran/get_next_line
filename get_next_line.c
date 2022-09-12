@@ -6,7 +6,7 @@
 /*   By: diserran <diserran@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:35:29 by diserran          #+#    #+#             */
-/*   Updated: 2022/09/10 22:46:59 by diserran         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:24:22 by diserran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static char	*ft_next_line(char *str)
 	i++;
 	j = 0;
 	while (str[i])
-		line[j++] = str[i]++;
+		line[j++] = str[i++];
 	free(str);
 	return (line);
 }
@@ -103,7 +103,7 @@ char	*get_next_line(int fd)
 	static char	*static_line;
 	char		*line;
 
-	if (fd == -1 || BUFFER_SIZE < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	static_line = ft_read_fd(fd, static_line);
 	if (!static_line)
